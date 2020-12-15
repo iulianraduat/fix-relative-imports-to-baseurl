@@ -37,12 +37,7 @@ export class FixRelativeImportsToBaseurlProvider {
     const document = editor.document;
     editor.edit((editBuilder) => {
       editor.selections.forEach((selection) =>
-        this.fixImports(
-          document,
-          editBuilder,
-          selection,
-          baseUrlWithTrailingSlash
-        )
+        this.fixImports(document, editBuilder, selection, baseUrlWithTrailingSlash)
       );
     });
   }
@@ -75,9 +70,7 @@ export class FixRelativeImportsToBaseurlProvider {
   ) {
     const dirPath = path.dirname(document.fileName);
 
-    const textRange: vscode.Range = sel.isEmpty
-      ? this.getTextRange(document)
-      : sel;
+    const textRange: vscode.Range = sel.isEmpty ? this.getTextRange(document) : sel;
     const selectedText = document.getText(textRange);
 
     let countFixes = 0;
@@ -87,9 +80,7 @@ export class FixRelativeImportsToBaseurlProvider {
         countFixes++;
 
         const filePath = path.resolve(dirPath, relativePath);
-        const newRelativePath = filePath
-          .substr(baseUrl.length)
-          .replace(/\\/g, '/');
+        const newRelativePath = filePath.substr(baseUrl.length).replace(/\\/g, '/');
         const newImport = `${importPrefixAndOpenQuote}${newRelativePath}${closeQuote}`;
         log(`Replaced <${match}> with <${newImport}>`);
         return newImport;
@@ -97,12 +88,10 @@ export class FixRelativeImportsToBaseurlProvider {
     );
     editBuilder.replace(textRange, newText);
 
-    const msg = `${countFixes} relative imports were fixed in ${document.fileName}`;
+    const msg = `${countFixes} relative import${countFixes === 1 ? '' : 's'} were fixed in ${document.fileName}`;
     this.showInformationMessage(msg);
     log(msg);
-    log(
-      '------------------------------------------------------------------------'
-    );
+    log('------------------------------------------------------------------------');
   }
 
   private getTextRange(document: vscode.TextDocument): vscode.Range {
