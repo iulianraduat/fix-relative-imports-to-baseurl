@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 24 24">
+	<polyline points="2,8 2,2 22,2 22,22 2,22 2,16"
+		style="fill:none;stroke:black;stroke-width:2;stroke-linejoin:round;stroke-linecap:round" />
+	<circle cx="2" cy="12" r="1" fill="black" />
+	<circle cx="5" cy="12" r="1" fill="black" />
+	<circle cx="8" cy="12" r="1" fill="black" />
+	<line x1="10" y1="12" x2="15" y2="12" style="stroke:black;stroke-width:2" />
+	<polygon points="15,8 15,16 20,12" fill="black" />
+</svg>
