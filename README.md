@@ -9,14 +9,53 @@ Automatically find and fix all imports in a typescript file to be relative to ba
 
 ## Features
 
-- Automatically find all imports in .ts and .tsx files
+- Automatically find all imports in a .ts or .tsx file
 - Automatically fix all imports to be relative to baseUrl defined in tsconfig.json
 - The fix is applied only to imports found in a selected text (if any) or to all imports found in the file
 - If there is no defined value for baseUrl then no changes will be made
 
+## Benefices
+
+- All imports from a file will use the same path no matter in whice file it is used
+  - Less time with fixing the broken path after copying or moving the code in a differrent file
+  - Searching for the path will display all files using exports from that file
+
 ## Usage
 
-From a typescript file select, using Ctrl+Shift+P (Command Palette), the command "Fix relative imports to baseUrl defined in tsconfig.json".
+From a typescript file, using Ctrl+Shift+P (Command Palette), run the command "Fix relative imports to baseUrl defined in tsconfig.json" to fix all (selected) relative imports in it.
+
+From any view, using Ctrl+Shift+P (Command Palette), run the command "Fix in all project files the relative imports to baseUrl defined in tsconfig.json" to fix all relative imports
+found in the specified source folders. The default source folders is only "src" in the root folder of the project. The list of source folders can be changed in Settings in
+"Fix relative imports to baseUrl: the list of folders to be scanned for relative imports".
+
+## Example
+
+tsconfig.json:
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "baseUrl": "."
+  }
+}
+```
+
+/home/user/prj/a/src/view/common/components/code.tss (before)
+
+```typescript
+import React from 'react';
+import Dropdown from '../dropdowns/SimpleDropDown';
+import { onChange } from './utils';
+```
+
+/home/user/prj/a/src/view/common/components/code.tss (after)
+
+```typescript
+import React from 'react';
+import Dropdown from 'src/common/dropdowns/SimpleDropDown';
+import { onChange } from 'src/view/common/components/utils';
+```
 
 ## Requirements
 

@@ -46,3 +46,17 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.0 (2020-12-16)
+
+### Added
+
+- The possibility to do changes in multiple typescript files with one command
+
+### Changed
+
+- Nothing
+
+### Removed
+
+- Nothing

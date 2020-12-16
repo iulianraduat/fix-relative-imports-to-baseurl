@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { fixImportsInAllFiles } from './file';
 import { log } from './log';
+import { fixImportsInDocument } from './view';
 
 export class FixRelativeImportsToBaseurlProvider {
   private workspaceRoot: string | undefined;
@@ -15,7 +17,7 @@ export class FixRelativeImportsToBaseurlProvider {
     this.workspaceRoot = workspaceFolders[0].uri.fsPath;
   }
 
-  public fix(): void {
+  public fixOne(): void {
     if (this.workspaceRoot === undefined) {
       log('No workspace root was found');
       return;
@@ -26,20 +28,25 @@ export class FixRelativeImportsToBaseurlProvider {
       log('No baseUrl was found');
       return;
     }
-    const baseUrlWithTrailingSlash = baseUrl + path.sep;
 
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-      log('No active text editor was found');
+    const baseUrlWithTrailingSlash = this.getBaseUrlWithTrailingSlash(baseUrl);
+    fixImportsInDocument(baseUrlWithTrailingSlash);
+  }
+
+  public fixAll(): void {
+    if (this.workspaceRoot === undefined) {
+      log('No workspace root was found');
       return;
     }
 
-    const document = editor.document;
-    editor.edit((editBuilder) => {
-      editor.selections.forEach((selection) =>
-        this.fixImports(document, editBuilder, selection, baseUrlWithTrailingSlash)
-      );
-    });
+    const baseUrl = this.getBaseUrl(this.workspaceRoot);
+    if (baseUrl === undefined) {
+      log('No baseUrl was found');
+      return;
+    }
+
+    const baseUrlWithTrailingSlash = this.getBaseUrlWithTrailingSlash(baseUrl);
+    fixImportsInAllFiles(this.workspaceRoot, baseUrlWithTrailingSlash);
   }
 
   /**
@@ -62,45 +69,7 @@ export class FixRelativeImportsToBaseurlProvider {
     }
   }
 
-  private fixImports(
-    document: vscode.TextDocument,
-    editBuilder: vscode.TextEditorEdit,
-    sel: vscode.Selection,
-    baseUrl: string
-  ) {
-    const dirPath = path.dirname(document.fileName);
-
-    const textRange: vscode.Range = sel.isEmpty ? this.getTextRange(document) : sel;
-    const selectedText = document.getText(textRange);
-
-    let countFixes = 0;
-    const newText = selectedText.replace(
-      /(import\s+.+?\s+from\s*["'])((?:\.|\.\.)[\/\\][^"']+)(["'])/gs,
-      (match, importPrefixAndOpenQuote, relativePath, closeQuote) => {
-        countFixes++;
-
-        const filePath = path.resolve(dirPath, relativePath);
-        const newRelativePath = filePath.substr(baseUrl.length).replace(/\\/g, '/');
-        const newImport = `${importPrefixAndOpenQuote}${newRelativePath}${closeQuote}`;
-        log(`Replaced <${match}> with <${newImport}>`);
-        return newImport;
-      }
-    );
-    editBuilder.replace(textRange, newText);
-
-    const msg = `${countFixes} relative import${countFixes === 1 ? '' : 's'} were fixed in ${document.fileName}`;
-    this.showInformationMessage(msg);
-    log(msg);
-    log('------------------------------------------------------------------------');
-  }
-
-  private getTextRange(document: vscode.TextDocument): vscode.Range {
-    const firstLine = document.lineAt(0);
-    const lastLine = document.lineAt(document.lineCount - 1);
-    return new vscode.Range(firstLine.range.start, lastLine.range.end);
-  }
-
-  private showInformationMessage(msg: string) {
-    vscode.window.showInformationMessage(msg);
+  private getBaseUrlWithTrailingSlash(baseUrl: string): string {
+    return baseUrl.endsWith(path.sep) ? baseUrl : baseUrl + path.sep;
   }
 }

@@ -15,8 +15,14 @@ export const activate = (context: vscode.ExtensionContext) => {
 
   let disposable: vscode.Disposable;
   disposable = vscode.commands.registerCommand(
-    'fixRelativeImportsToBaseurl',
-    () => fixRelativeImportsToBaseurlProvider.fix()
+    'fixRelativeImportsToBaseurl.one',
+    () => fixRelativeImportsToBaseurlProvider.fixOne()
+  );
+  context.subscriptions.push(disposable);
+
+  disposable = vscode.commands.registerCommand(
+    'fixRelativeImportsToBaseurl.all',
+    () => fixRelativeImportsToBaseurlProvider.fixAll()
   );
   context.subscriptions.push(disposable);
 };

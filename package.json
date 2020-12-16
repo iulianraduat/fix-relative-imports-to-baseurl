@@ -2,7 +2,7 @@
   "name": "fix-relative-imports-to-baseurl",
   "displayName": "Fix relative imports to baseUrl",
   "description": "A Visual Studio Code extension for fixing all relative imports to use the baseUrl defined in tsconfig.json.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "icon": "images/logo.png",
   "license": "GPL-3.0",
   "publisher": "iulian-radu-at",
@@ -22,14 +22,23 @@
   ],
   "activationEvents": [
     "onLanguage:typescript",
-    "onCommand:fixRelativeImportsToBaseurl"
+    "onCommand:fixRelativeImportsToBaseurl.one",
+    "onCommand:fixRelativeImportsToBaseurl.all"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "fixRelativeImportsToBaseurl",
+        "command": "fixRelativeImportsToBaseurl.one",
         "title": "Fix relative imports to baseUrl defined in tsconfig.json",
+        "icon": {
+          "light": "resources/light/fix.svg",
+          "dark": "resources/dark/fix.svg"
+        }
+      },
+      {
+        "command": "fixRelativeImportsToBaseurl.all",
+        "title": "Fix in all project files the relative imports to baseUrl defined in tsconfig.json",
         "icon": {
           "light": "resources/light/fix.svg",
           "dark": "resources/dark/fix.svg"
@@ -45,6 +54,14 @@
             "default": false,
             "description": "Fix relative imports to baseUrl: log all changes in an output window",
             "scope": "resource"
+          },
+          "fixRelativeImportsToBaseurl.sources": {
+            "type": "array",
+            "default": [
+              "src"
+            ],
+            "description": "Fix relative imports to baseUrl: the list of folders to be scanned for relative imports",
+            "scope": "resource"
           }
         }
       }
@@ -58,7 +75,7 @@
     "pretest": "yarn run compile && yarn run lint",
     "test": "echo node ./out/test/runTest.js",
     "package": "vsce package",
-    "install:local": "code --install-extension fix-relative-imports-to-baseurl-1.0.2.vsix",
+    "install:local": "code --install-extension fix-relative-imports-to-baseurl-1.1.0.vsix",
     "publish": "vsce publish"
   },
   "dependencies": {
