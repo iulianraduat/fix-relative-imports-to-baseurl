@@ -63,7 +63,15 @@ There are no special requirements.
 
 ## Extension Settings
 
-There are no custom settings used by this extension.
+- fixRelativeImportsToBaseurl.sources:
+
+  - Fix relative imports to baseUrl: the list of folders to be scanned for relative imports
+  - default src
+
+- fixRelativeImportsToBaseurl.debug:
+
+  - Fix relative imports to baseUrl: log all changes in an output window
+  - default false
 
 ## Known Issues
 
