@@ -2,8 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { log } from './log';
 
-export const DELIM_MSG =
-  '------------------------------------------------------------------------';
+export const DELIM_MSG = '------------------------------------------------------------------------';
 
 export function showInformationMessage(msg: string) {
   vscode.window.showInformationMessage(msg);
@@ -18,19 +17,18 @@ export function getFixedImports(
   const dirPath = path.dirname(filePath);
 
   let countFixes = 0;
-  const newCode = code.replace(
-    REGEX_IMPORT,
-    (match, importPrefixAndOpenQuote, relativePath, closeQuote) => {
-      countFixes++;
+  const newCode = code.replace(REGEX_IMPORT, (match, importPrefixAndOpenQuote, relativePath, closeQuote) => {
+    countFixes++;
 
-      const filePath = path.resolve(dirPath, relativePath);
-      const newRelativePath = filePath
-        .substr(baseUrlWithTrailingSlash.length)
-        .replace(/\\/g, '/');
-      const newImport = `${importPrefixAndOpenQuote}${newRelativePath}${closeQuote}`;
-      log(`Replaced <${match}> with <${newImport}>`);
-      return newImport;
-    }
-  );
+    const filePath = path.resolve(dirPath, relativePath);
+    const newRelativePath = filePath.substr(baseUrlWithTrailingSlash.length).replace(/\\/g, '/');
+    const newImport = `${importPrefixAndOpenQuote}${newRelativePath}${closeQuote}`;
+    log(`Replaced <${match}> with <${newImport}>`);
+    return newImport;
+  });
   return { countFixes, newCode };
+}
+
+export function singularOrPlural(count: number, labelSingular: string, labelPlural: string) {
+  return count === 1 ? labelSingular : labelPlural;
 }

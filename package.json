@@ -2,7 +2,7 @@
   "name": "fix-relative-imports-to-baseurl",
   "displayName": "Fix relative imports to baseUrl",
   "description": "A Visual Studio Code extension for fixing all relative imports to use the baseUrl defined in tsconfig.json.",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "icon": "images/logo.png",
   "license": "GPL-3.0",
   "publisher": "iulian-radu-at",
@@ -16,6 +16,17 @@
   },
   "bugs": {
     "url": "https://github.com/iulian-radu-at/fix-relative-imports-to-baseurl/issues"
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "test": "echo node ./out/test/runTest.js",
+    "package": "vsce package",
+    "install:local": "code --install-extension fix-relative-imports-to-baseurl-1.1.4.vsix",
+    "publish": "vsce publish"
   },
   "categories": [
     "Linters"
@@ -67,30 +78,19 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
-    "test": "echo node ./out/test/runTest.js",
-    "package": "vsce package",
-    "install:local": "code --install-extension fix-relative-imports-to-baseurl-1.1.2.vsix",
-    "publish": "vsce publish"
-  },
   "dependencies": {
-    "glob": "^7.1.6"
+    "glob": "^7.1.7"
   },
   "devDependencies": {
     "@types/vscode": "1.46.0",
     "@types/glob": "7.1.3",
-    "@types/mocha": "8.2.1",
-    "@types/node": "14.14.31",
-    "eslint": "7.21.0",
-    "@typescript-eslint/parser": "4.15.2",
-    "@typescript-eslint/eslint-plugin": "4.15.2",
-    "mocha": "8.3.0",
-    "typescript": "4.2.2",
-    "vscode-test": "1.5.1"
+    "@types/mocha": "8.2.2",
+    "@types/node": "14.14.45",
+    "eslint": "7.26.0",
+    "@typescript-eslint/parser": "4.23.0",
+    "@typescript-eslint/eslint-plugin": "4.23.0",
+    "mocha": "8.4.0",
+    "typescript": "4.2.4",
+    "vscode-test": "1.5.2"
   }
 }
