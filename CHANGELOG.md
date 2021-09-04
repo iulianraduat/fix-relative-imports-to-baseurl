@@ -117,3 +117,17 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.5 (2021-09-04)
+
+### Added
+
+- Nothing
+
+### Changed
+
+- Updated the packages
+
+### Removed
+
+- Nothing
