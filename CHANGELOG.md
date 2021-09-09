@@ -131,3 +131,17 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.6 (2021-09-09)
+
+### Added
+
+- Nothing
+
+### Changed
+
+- Fixed the path to entry module in package.json
+
+### Removed
+
+- Nothing
