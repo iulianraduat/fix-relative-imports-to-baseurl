@@ -28,6 +28,10 @@ From any view, using Ctrl+Shift+P (Command Palette), run the command "Fix in all
 found in the specified source folders. The default source folders is only "src" in the root folder of the project. The list of source folders can be changed in Settings in
 "Fix relative imports to baseUrl: the list of folders to be scanned for relative imports".
 
+To make Visual Studio Code suggests you the absolute path relative to baseUrl, you will need to set the in Preferences the "Preferences: Import Module Specifier" for both javascript and typescript to "non-relative".
+
+![Settings import non relative](https://github.com/iulian-radu-at/fix-relative-imports-to-baseurl/raw/main/resources/settings-import-non-relative.jpg)
+
 ## Example
 
 tsconfig.json:
