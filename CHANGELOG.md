@@ -173,3 +173,17 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.9 (2022-06-20)
+
+### Added
+
+- Support link for extension's author (https://www.patreon.com/iulian_radu_at)
+
+### Changed
+
+- Updated packages
+
+### Removed
+
+- Nothing
