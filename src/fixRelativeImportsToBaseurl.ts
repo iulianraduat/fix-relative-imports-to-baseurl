@@ -1,7 +1,7 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { fixImportsInAllFiles } from './file';
+import { pathResolve, readJsonFile } from './fsUtils';
 import { log } from './log';
 import { fixImportsInDocument } from './view';
 
@@ -54,19 +54,11 @@ export class FixRelativeImportsToBaseurlProvider {
    * @param path is the location of the project's root
    */
   private getBaseUrl(pathToPrj: string): string | undefined {
-    const pathToTsconfig = path.resolve(pathToPrj, 'tsconfig.json');
+    const pathToTsconfig = pathResolve(pathToPrj, 'tsconfig.json');
     log(`Looking for tsconfig.json in '${pathToTsconfig}'`);
-    const tsconfig = this.readJsonFile(pathToTsconfig);
+    const tsconfig = readJsonFile(pathToTsconfig);
     const baseUrl = tsconfig?.compilerOptions?.baseUrl;
     return baseUrl ? path.resolve(pathToPrj, baseUrl) : undefined;
-  }
-
-  private readJsonFile(path: string): { [kes: string]: any } | undefined {
-    try {
-      return JSON.parse(fs.readFileSync(path, 'utf8'));
-    } catch {
-      return undefined;
-    }
   }
 
   private getBaseUrlWithTrailingSlash(baseUrl: string): string {

@@ -187,3 +187,18 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.10 (2022-09-25)
+
+### Added
+
+- Nothing
+
+### Changed
+
+- Updated packages
+- Now are accepted tsconfig.json files containing comments
+
+### Removed
+
+- Nothing
