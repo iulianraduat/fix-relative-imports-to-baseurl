@@ -2,7 +2,7 @@
 
 [![Marketplace Version](https://vsmarketplacebadges.dev/version/iulian-radu-at.fix-relative-imports-to-baseurl.svg)](https://marketplace.visualstudio.com/items?itemName=iulian-radu-at.fix-relative-imports-to-baseurl)
 [![Installs](https://vsmarketplacebadges.dev/installs/iulian-radu-at.fix-relative-imports-to-baseurl.svg)](https://marketplace.visualstudio.com/items?itemName=iulian-radu-at.fix-relative-imports-to-baseurl)
-[![Rating](https://vsmarketplacebadges.dev/rating/iulian-radu-at.fix-relative-imports-to-baseurl.svg)](https://marketplace.visualstudio.com/items?itemName=iulian-radu-at.fix-relative-imports-to-baseurl)
+[![Rating](https://vsmarketplacebadges.dev/rating-short/iulian-radu-at.fix-relative-imports-to-baseurl.svg)](https://marketplace.visualstudio.com/items?itemName=iulian-radu-at.fix-relative-imports-to-baseurl)
 <a href="http://opensource.org/licenses/GPL-3.0" target="_blank" rel="noreferrer noopener"><img src="https://img.shields.io/badge/license-GPL-orange.svg?color=blue&amp;style=flat-square" alt="The GPL-3.0 License"></a>
 
 Automatically find and fix all imports in a typescript file to be relative to baseUrl defined in tsconfig.json.
