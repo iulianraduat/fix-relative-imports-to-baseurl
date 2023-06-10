@@ -25,7 +25,8 @@ export class FixRelativeImportsToBaseurlProvider {
 
     const baseUrl = this.getBaseUrl(this.workspaceRoot);
     if (baseUrl === undefined) {
-      log('No baseUrl was found');
+      log('No baseUrl was found in jsconfig.json/tsconfig.json');
+      vscode.window.showErrorMessage('No baseUrl was found in jsconfig.json/tsconfig.json');
       return;
     }
 
@@ -41,7 +42,8 @@ export class FixRelativeImportsToBaseurlProvider {
 
     const baseUrl = this.getBaseUrl(this.workspaceRoot);
     if (baseUrl === undefined) {
-      log('No baseUrl was found');
+      log('No baseUrl was found in jsconfig.json/tsconfig.json');
+      vscode.window.showErrorMessage('No baseUrl was found in jsconfig.json/tsconfig.json');
       return;
     }
 

@@ -202,3 +202,19 @@ All notable changes to the "Fix Relative Imports to baseUrl" extension will be d
 ### Removed
 
 - Nothing
+
+## 1.1.11 (2023-06-10)
+
+### Added
+
+- Nothing
+
+### Changed
+
+- Updated the packages
+- Display an error message when the fix cannot be applied
+- Fixed the badges
+
+### Removed
+
+- Nothing
