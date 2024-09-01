@@ -7,6 +7,10 @@
 
 Automatically find and fix all imports in a typescript file to be relative to baseUrl defined in tsconfig.json.
 
+## Sponsorship
+
+By purchasing [Coding Guidelines for React with TypeScript](https://www.amazon.com/dp/B0DD3DNDY1) from any Amazon website, you will get a set of guidelines for writing a clean, maintainable, and efficient code. Also you will sponsor me, showing your appreciation for my effort in creating and mentaining this extension.
+
 ## Features
 
 - Automatically find all imports in a .ts or .tsx file
@@ -48,17 +52,17 @@ tsconfig.json:
 /home/user/prj/a/src/view/common/components/code.tss (before)
 
 ```typescript
-import React from 'react';
-import Dropdown from '../dropdowns/SimpleDropDown';
-import { onChange } from './utils';
+import React from "react";
+import Dropdown from "../dropdowns/SimpleDropDown";
+import { onChange } from "./utils";
 ```
 
 /home/user/prj/a/src/view/common/components/code.tss (after)
 
 ```typescript
-import React from 'react';
-import Dropdown from 'src/common/dropdowns/SimpleDropDown';
-import { onChange } from 'src/view/common/components/utils';
+import React from "react";
+import Dropdown from "src/common/dropdowns/SimpleDropDown";
+import { onChange } from "src/view/common/components/utils";
 ```
 
 ## Requirements
